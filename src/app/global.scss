@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@mixin m {
+    @media screen and (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin transition($property: all 0.3s ease) {
+    transition: $property;
+    -webkit-transition: $property;
+    -ms-transition: $property;
+    -moz-transition: $property;
+    -o-transition: $property;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.right-menu {
+    position: sticky;
+    top: 0;
+    min-width: 20%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.05);
+
+
+    @include m {
+        z-index: 1024;
+        position: absolute;
+        transform: translateX(-100%);
+        opacity: 0;
+        @include transition();
+        background-color: #000;
+    }
+
+    &.opened {
+        @include m {
+            transform: translateX(0);
+            opacity: 1;
+            width: 100%;
+            @include transition();
+        }
+    }
+
+    .item {
+        padding: 24px;
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba($color: #fff, $alpha: .3);
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+
+            a {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.menu-toggle {
+    z-index: 1025;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    cursor: pointer;
+
+    @include m {
+        display: flex;
+    }
+}
+
+.user-list {
+    width: 80%;
+
+    @include m {
+        width: 100%;
+    }
+}
+
+select {
+    color: #000 !important;
+}
+
+.loading {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include m {
+        width: 100%;
+    }
+}
